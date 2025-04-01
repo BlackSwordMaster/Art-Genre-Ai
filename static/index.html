@@ -69,7 +69,7 @@
 
       resultBox.textContent = "Thinking... 🎨";
 
-      fetch("/genre", {
+      fetch("https://art-genre-ai.onrender.com", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt: finalPrompt })
