@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, send_from_directory
 from openai import OpenAI
+from flask_cors import CORS  # ← add this line
 import os
 from dotenv import load_dotenv
 
@@ -8,6 +9,7 @@ load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 app = Flask(__name__, static_folder='static')
+CORS(app)  # ← add this line
 
 @app.route("/")
 def index():
@@ -37,6 +39,5 @@ def get_art_genre():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    import os
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
