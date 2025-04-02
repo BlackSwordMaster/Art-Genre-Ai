@@ -1,21 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>🎨 What Art Genre Are You?</title>
-  <meta charset="UTF-8" />
-  <style>
-    body { font-family: sans-serif; text-align: center; padding: 40px; }
-    .question { margin-bottom: 25px; }
-    label { display: block; margin: 5px; }
-    button { padding: 10px 20px; font-size: 1rem; margin-top: 20px; }
-    #output { margin-top: 30px; font-weight: bold; font-size: 1.2rem; }
-  </style>
+  <meta charset="UTF-8">
+  <title>Art Genre Quiz</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>🎭 Personality Art Quiz</h1>
-  <form id="quizForm" onsubmit="submitQuiz(event)">
-    
-    <div class="question">
+  <h1>What Art Genre Matches You?</h1>
+  <div id="progressContainer"></div>
+  <form id="quizForm">
+    <div class="question active" data-index="0">
       <h3>1. How would you describe your personality?</h3>
       <label><input type="checkbox" name="personality" value="calm"> Calm</label>
       <label><input type="checkbox" name="personality" value="energetic"> Energetic</label>
@@ -23,7 +18,7 @@
       <label><input type="checkbox" name="personality" value="bold"> Bold</label>
     </div>
 
-    <div class="question">
+    <div class="question" data-index="1">
       <h3>2. Favorite color palette?</h3>
       <label><input type="checkbox" name="colors" value="pastels"> Pastels</label>
       <label><input type="checkbox" name="colors" value="bold primaries"> Bold primaries</label>
@@ -31,7 +26,7 @@
       <label><input type="checkbox" name="colors" value="neon"> Neon</label>
     </div>
 
-    <div class="question">
+    <div class="question" data-index="2">
       <h3>3. What setting inspires you most?</h3>
       <label><input type="checkbox" name="setting" value="forest"> Forest</label>
       <label><input type="checkbox" name="setting" value="urban"> City/Urban</label>
@@ -39,7 +34,7 @@
       <label><input type="checkbox" name="setting" value="dreamlike scenes"> Dreamlike scenes</label>
     </div>
 
-    <div class="question">
+    <div class="question" data-index="3">
       <h3>4. Favorite type of music?</h3>
       <label><input type="checkbox" name="music" value="classical"> Classical</label>
       <label><input type="checkbox" name="music" value="hip hop"> Hip hop</label>
@@ -47,42 +42,23 @@
       <label><input type="checkbox" name="music" value="electronic"> Electronic</label>
     </div>
 
-    <button type="submit">Reveal My Art Genre</button>
+    <div class="question" data-index="4">
+      <h3>5. Describe your creative process in a sentence or two:</h3>
+      <textarea
+        name="creative"
+        placeholder="e.g. I sketch quickly, let the ideas flow, and then refine what stands out."
+        maxlength="1250"
+      ></textarea>
+    </div>
+
+    <div>
+      <button type="button" id="prevBtn" onclick="changeQuestion(-1)" disabled>Back</button>
+      <button type="button" id="nextBtn" onclick="changeQuestion(1)">Next</button>
+    </div>
   </form>
 
   <p id="output"></p>
 
-  <script>
-    function submitQuiz(event) {
-      event.preventDefault();
-      const form = document.getElementById("quizForm");
-      const formData = new FormData(form);
-      const resultBox = document.getElementById("output");
-
-      let summary = [];
-
-      for (let [name, value] of formData.entries()) {
-        summary.push(value);
-      }
-
-      const finalPrompt = `Based on the following personality quiz traits: ${summary.join(", ")}, what genre of art would this person be best at and why? Respond in this format: 'Genre: [name] - [one-line description]'`;
-
-      resultBox.textContent = "Thinking... 🎨";
-
-      fetch("https://art-genre-ai.onrender.com/genre", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: finalPrompt })
-      })
-      .then(res => res.json())
-      .then(data => {
-        resultBox.textContent = data.genre || "Oops! Something went wrong.";
-      })
-      .catch(err => {
-        resultBox.textContent = "Something went wrong!";
-        console.error(err);
-      });
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
