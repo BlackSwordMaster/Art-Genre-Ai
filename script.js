@@ -103,7 +103,7 @@ function submitQuiz() {
     const platforms = [
       {
         name: "Twitter",
-        img: "twitter.png",
+        img: "images/twitter.png",
         action: () => {
           const tweet = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
           window.open(tweet, '_blank');
@@ -111,7 +111,7 @@ function submitQuiz() {
       },
       {
         name: "Facebook",
-        img: "facebook.png",
+        img: "images/facebook.png",
         action: () => {
           const fb = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://personaland.com')}&quote=${encodeURIComponent(shareText)}`;
           window.open(fb, '_blank');
@@ -119,7 +119,7 @@ function submitQuiz() {
       },
       {
         name: "Instagram",
-        img: "instagram.png",
+        img: "images/instagram.png",
         action: () => {
           navigator.clipboard.writeText(shareText).then(() => {
             alert("Copied your result! Paste it into your Instagram story or post.");
