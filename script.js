@@ -5,6 +5,7 @@ const prevBtn = document.getElementById("prevBtn");
 const output = document.getElementById("output");
 const progressContainer = document.getElementById("progressContainer");
 const shareButtons = document.getElementById("shareButtons");
+const retryBtn = document.getElementById("retryBtn");
 
 function updateProgress() {
   progressContainer.innerHTML = "";
@@ -96,10 +97,9 @@ function submitQuiz() {
 
     const shareText = `My art genre result: ${genre}\nFind yours at: https://personaland.com`;
 
-    // Show static share buttons
     shareButtons.style.display = "flex";
+    retryBtn.style.display = "inline-block";
 
-    // Assign actions to each button
     document.getElementById("twitterBtn").onclick = () => {
       const tweet = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
       window.open(tweet, '_blank');
@@ -126,5 +126,21 @@ document.addEventListener("DOMContentLoaded", () => {
   updateProgress();
   document.querySelectorAll("input, textarea").forEach(el => {
     el.addEventListener("input", updateProgress);
+  });
+
+  retryBtn.addEventListener("click", () => {
+    document.getElementById("quizForm").reset();
+    document.querySelectorAll(".question").forEach(q => q.classList.remove("active"));
+    currentQuestion = 0;
+    questions[currentQuestion].classList.add("active");
+
+    nextBtn.disabled = false;
+    nextBtn.textContent = "Next";
+    prevBtn.disabled = true;
+    output.textContent = "";
+    shareButtons.style.display = "none";
+    retryBtn.style.display = "none";
+
+    updateProgress();
   });
 });
