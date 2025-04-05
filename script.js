@@ -4,6 +4,7 @@ const nextBtn = document.getElementById("nextBtn");
 const prevBtn = document.getElementById("prevBtn");
 const output = document.getElementById("output");
 const progressContainer = document.getElementById("progressContainer");
+const shareButtons = document.getElementById("shareButtons");
 
 function updateProgress() {
   progressContainer.innerHTML = "";
@@ -93,58 +94,27 @@ function submitQuiz() {
     const genre = data.genre || "Oops! Something went wrong.";
     output.innerHTML = `<p>${genre}</p>`;
 
-    const shareText = `🎨 My art genre result: ${genre}\nFind yours at: https://personaland.com`;
-    const shareContainer = document.createElement("div");
-    shareContainer.style.display = "flex";
-    shareContainer.style.gap = "12px";
-    shareContainer.style.marginTop = "20px";
-    shareContainer.style.alignItems = "center";
+    const shareText = `My art genre result: ${genre}\nFind yours at: https://personaland.com`;
 
-    const platforms = [
-      {
-        name: "Twitter",
-        img: "images/twitter.png",
-        action: () => {
-          const tweet = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
-          window.open(tweet, '_blank');
-        }
-      },
-      {
-        name: "Facebook",
-        img: "images/facebook.png",
-        action: () => {
-          const fb = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://personaland.com')}&quote=${encodeURIComponent(shareText)}`;
-          window.open(fb, '_blank');
-        }
-      },
-      {
-        name: "Instagram",
-        img: "images/instagram.png",
-        action: () => {
-          navigator.clipboard.writeText(shareText).then(() => {
-            alert("Copied your result! Paste it into your Instagram story or post.");
-          });
-        }
-      }
-    ];
+    // Show static share buttons
+    shareButtons.style.display = "flex";
 
-    platforms.forEach(p => {
-      const btn = document.createElement("button");
-      btn.className = "share-circle";
-      btn.title = `Share on ${p.name}`;
-      btn.onclick = p.action;
+    // Assign actions to each button
+    document.getElementById("twitterBtn").onclick = () => {
+      const tweet = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+      window.open(tweet, '_blank');
+    };
 
-      const icon = document.createElement("img");
-      icon.src = p.img;
-      icon.alt = p.name;
-      icon.style.width = "24px";
-      icon.style.height = "24px";
+    document.getElementById("facebookBtn").onclick = () => {
+      const fb = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://personaland.com')}&quote=${encodeURIComponent(shareText)}`;
+      window.open(fb, '_blank');
+    };
 
-      btn.appendChild(icon);
-      shareContainer.appendChild(btn);
-    });
-
-    output.appendChild(shareContainer);
+    document.getElementById("instagramBtn").onclick = () => {
+      navigator.clipboard.writeText(shareText).then(() => {
+        alert("Copied your result! Paste it into your Instagram story or post.");
+      });
+    };
   })
   .catch(err => {
     output.textContent = "Something went wrong!";
