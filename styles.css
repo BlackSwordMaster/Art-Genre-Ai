@@ -1,110 +1,103 @@
 body {
-    font-family: 'Gloria Hallelujah', cursive;
-    background: #978b6f;
-    padding: 20px;
-    max-width: 600px;
-    margin: auto;
-  }
-  
-  #progressContainer {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    font-weight: bold;
-    font-size: 0.95rem;
-    color: white;
-  }
-  
-  .question {
-    display: none;
-    margin-bottom: 20px;
-  }
-  
-  .question.active {
-    display: block;
-  }
-  
-  .question h3 {
-    margin-bottom: 10px;
-  }
-  
-  textarea {
-    width: 100%;
-    height: 120px;
-    font-size: 1rem;
-    padding: 10px;
-    box-sizing: border-box;
-    resize: none;
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  textarea::placeholder {
-    color: rgba(0, 0, 0, 0.5);
-    font-style: italic;
-  }
-  
-  button {
-    font-family: 'Gloria Hallelujah', cursive;
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  
-  .share-circle {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    background-color: white;
-    border: none;
-  }
-  
-  .share-circle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
+  font-family: 'Gloria Hallelujah', cursive;
+  background: #978b6f;
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+}
 
-  #shareButtons {
-    display: none; /* hidden until result is shown */
-    margin-top: 20px;
-    justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  
-  #shareButtons .share-circle {
-    background-color: white;
-    width: 50px;
-    height: 50px;
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  #shareButtons .share-circle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  #shareButtons img {
-    width: 24px;
-    height: 24px;
-  }
-  
-  #output {
-    margin-top: 30px;
-    font-weight: bold;
-    color: white;
-  }
-  
+#progressContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  font-weight: bold;
+  font-size: 0.95rem;
+  color: white;
+}
+
+.question {
+  display: none;
+  margin-bottom: 20px;
+}
+
+.question.active {
+  display: block;
+}
+
+.question h3 {
+  margin-bottom: 10px;
+}
+
+textarea {
+  width: 100%;
+  height: 120px;
+  font-size: 1rem;
+  padding: 10px;
+  box-sizing: border-box;
+  resize: none;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+textarea::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+  font-style: italic;
+}
+
+button {
+  font-family: 'Gloria Hallelujah', cursive;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#retryBtn {
+  background-color: white;
+  border: 2px solid #444;
+  color: #444;
+  display: none;
+}
+
+#retryBtn:hover {
+  background-color: #eee;
+}
+
+.share-circle {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: white;
+  border: none;
+}
+
+.share-circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#shareButtons {
+  display: none;
+  margin-top: 20px;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+#shareButtons img {
+  width: 24px;
+  height: 24px;
+}
+
+#output {
+  margin-top: 30px;
+  font-weight: bold;
+  color: white;
+}
